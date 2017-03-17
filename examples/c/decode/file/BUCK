@@ -1,0 +1,12 @@
+cxx_binary(
+  name = 'file',
+  srcs = [
+    'main.c',
+  ],
+  compiler_flags = [
+    '-std=c11',
+  ],
+  deps = [
+    '//:flac',
+  ],
+)

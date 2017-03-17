@@ -1,0 +1,13 @@
+cxx_binary(
+  name = 'test_libFLAC',
+  header_namespace = '',
+  headers = subdir_glob([
+    ('', '*.h'),
+  ]),
+  srcs = glob([
+    '*.c',
+  ]),
+  deps = [
+    '//:flac',
+  ],
+)
