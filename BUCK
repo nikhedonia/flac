@@ -17,10 +17,9 @@ cxx_library(
   ],
   excludes = windows_sources),
   compiler_flags = [
-    '-std=c11',
+    '-std=gnu99',
     '-DPACKAGE_VERSION="1.3.2"',
-    # '-DFLAC__HAS_OGG=1',
-    '-DFLAC__HAS_OGG=0',
+    '-DFLAC__HAS_OGG=1',
     '-DHAVE_LROUND',
   ],
   visibility = [
