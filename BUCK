@@ -1,5 +1,9 @@
 include_defs('//BUCKAROO_DEPS')
 
+macos_flags = [
+  '-DHAVE_SYS_PARAM_H',
+]
+
 windows_sources = [
   'src/libFLAC/windows_unicode_filenames.c',
 ]
@@ -22,8 +26,32 @@ cxx_library(
     '-DFLAC__HAS_OGG=1',
     '-DHAVE_LROUND',
   ],
+  platform_compiler_flags = [
+    ('default', macos_flags),
+    ('^macos.*', macos_flags),
+  ],
   visibility = [
     'PUBLIC',
   ],
   deps = BUCKAROO_DEPS,
+)
+
+cxx_library(
+  name = 'flac++',
+  header_namespace = '',
+  exported_headers = subdir_glob([
+    ('include', 'FLAC++/**/*.h'),
+    # ('include', 'share/**/*.h'),
+    # ('src/libFLAC++/include', '**/*.h'),
+  ]),
+  srcs = glob([
+    'src/libFLAC++/**/*.cpp',
+  ],
+  excludes = windows_sources),
+  visibility = [
+    '//...',
+  ],
+  deps = [
+    '//:flac',
+  ],
 )

@@ -1,0 +1,11 @@
+cxx_binary(
+  name = 'microbench',
+  header_namespace = '',
+  srcs = [
+    'benchmark_residual.c',
+    'util.c',
+  ],
+  deps = [
+    '//:flac',
+  ],
+)

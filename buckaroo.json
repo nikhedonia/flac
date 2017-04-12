@@ -1,6 +1,6 @@
 {
   "name": "flac",
   "dependencies": {
-    "ogg": "1.3.2"
+    "xiph/ogg": "1.3.2"
   }
 }

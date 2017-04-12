@@ -35,6 +35,8 @@
 #include "FLAC++/decoder.h"
 #include "share/compat.h"
 
+#include <cinttypes>
+
 static FLAC__uint64 total_samples = 0;
 static uint32_t sample_rate = 0;
 static uint32_t channels = 0;
