@@ -1,8 +1,10 @@
 include_defs('//BUCKAROO_DEPS')
 
-macos_flags = [
-  '-DHAVE_SYS_PARAM_H',
+linux_flags = [
+  '-DHAVE_STDINT_H'
 ]
+
+macos_flags = []
 
 windows_sources = [
   'src/libFLAC/windows_unicode_filenames.c',
@@ -22,13 +24,17 @@ cxx_library(
   excludes = windows_sources),
   compiler_flags = [
     '-std=gnu99',
+  ],
+  preprocessor_flags = [
     '-DPACKAGE_VERSION="1.3.2"',
     '-DFLAC__HAS_OGG=1',
     '-DHAVE_LROUND',
+    '-DHAVE_SYS_PARAM_H'
   ],
-  platform_compiler_flags = [
-    ('default', macos_flags),
-    ('^macos.*', macos_flags),
+  platform_preprocessor_flags = [
+    ('default', linux_flags),
+    ('^linux.*', linux_flags),
+    ('^macos.*', macos_flags)
   ],
   visibility = [
     'PUBLIC',
